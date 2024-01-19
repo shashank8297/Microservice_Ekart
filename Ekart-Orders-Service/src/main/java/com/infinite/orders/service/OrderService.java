@@ -1,0 +1,31 @@
+package com.infinite.orders.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.infinite.orders.model.Orders;
+import com.infinite.orders.repository.OrderRepository;
+
+@Service
+public class OrderService implements IOrderService {
+
+	@Autowired
+	OrderRepository orderRepository;
+	
+	public Orders newOrder(Orders order) {
+		// TODO Auto-generated method stub
+		return orderRepository.save(order);
+	}
+
+	public Orders orderDetails(Long orderId) {
+		// TODO Auto-generated method stub
+		return orderRepository.findById(orderId).orElseThrow(IllegalArgumentException::new);
+	}
+
+	public void removeOrder(Long orderId) {
+		// TODO Auto-generated method stub
+		orderRepository.deleteById(orderId);
+		
+	}
+
+}
