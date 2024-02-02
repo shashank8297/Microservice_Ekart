@@ -13,26 +13,29 @@ spring:
           predicates:
             - Path=/product/**
           filters:
+          - AuthenticationFilter
           - name: CircuitBreaker
             args:
               name: PRODUCT-SERVICE
-              fallback: forword:/productServiceFallBackMethod
+              fallback: forword:/productServiceFallBack
               
-        - id: ORDER-SERVICE 
-          uri: lb://ORDER-SERVICE
+        - id: ORDERS-SERVICE 
+          uri: lb://ORDERS-SERVICE
           predicates:
-            - Path=/order/**
+            - Path=/orders/**
           filters:
+          - AuthenticationFilter
           - name: CircuitBreaker
             args:
-              name: ORDER-SERVICE
-              fallback: forword:/orderServiceFallBackMethod
+              name: ORDERS-SERVICE
+              fallback: forword:/orderServiceFallBack
               
         - id: USER-SERVICE 
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user/**
           filters:
+          - AuthenticationFilter
           - name: CircuitBreaker
             args:
               name: USER-SERVICE
@@ -43,10 +46,11 @@ spring:
           predicates:
             - Path=/orderDetails/**
           filters:
+          - AuthenticationFilter
           - name: CircuitBreaker
             args:
-              name: ORDER-SERVICE
-              fallback: forword:/orderDetailsServiceFallBackMethod
+              name:  ORDER-DETAILS-SERVICE
+              fallback: forword:/orderDetailsServiceFallBack
 
 hystrix:
   command:
