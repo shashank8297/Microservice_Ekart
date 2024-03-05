@@ -19,6 +19,7 @@ spring:
               name: PRODUCT-SERVICE
               fallback: forword:/productServiceFallBack
               
+              
         - id: ORDERS-SERVICE 
           uri: lb://ORDERS-SERVICE
           predicates:
@@ -51,6 +52,17 @@ spring:
             args:
               name:  ORDER-DETAILS-SERVICE
               fallback: forword:/orderDetailsServiceFallBack
+        - id: Identity-Service
+          uri: lb://Identity-Service
+          predicates:
+            - Path=/**
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "http://localhost:3000/"
+#            allowedHeaders: "*"
+#            allowedMethods: "*"
+                
 
 hystrix:
   command:

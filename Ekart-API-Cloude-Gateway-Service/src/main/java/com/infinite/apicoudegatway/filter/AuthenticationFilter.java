@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+//import org.springframework.web.client.RestTemplate;
 
 import com.google.common.net.HttpHeaders;
 import com.infinite.apicoudegatway.util.JwtUtil;

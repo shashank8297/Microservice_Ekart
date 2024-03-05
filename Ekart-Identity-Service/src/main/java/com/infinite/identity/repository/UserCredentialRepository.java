@@ -12,4 +12,9 @@ public interface UserCredentialRepository extends JpaRepository<UserCredential, 
 
 	Optional<UserCredential> findByName(String username);
 
+
+	//UserCredential findByName(String username);
+
+	//Integer findByNameAndPassword(String username, String password);
+
 }

@@ -4,7 +4,7 @@ import com.infinite.orders.model.Orders;
 
 public interface IOrderService {
 
-	public Orders newOrder(Orders order);
+	public Long newOrder(Orders order);
 	
 	public Orders orderDetails(Long orderId);
 	

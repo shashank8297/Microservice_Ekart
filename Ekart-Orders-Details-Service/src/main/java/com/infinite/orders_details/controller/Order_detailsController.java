@@ -20,15 +20,15 @@ public class Order_detailsController {
 	Order_DetailsService orderDetailsService;
 
 	@PostMapping("/addOrderDetails")
-	public void addNewOrderDetails(@RequestBody Order_Details orderDetails) {
+	public Long addNewOrderDetails(@RequestBody Order_Details orderDetails) {
 
 		System.out.println("ADD");
-		orderDetailsService.newOrderDetails(orderDetails);
+
+		return orderDetailsService.newOrderDetails(orderDetails);
 	}
 
 	@GetMapping("/orderDetails/{id}")
 	public ResponseTemplateValueObject getOrderDetails(@PathVariable("id") Long orderDetailsId) {
-
 		System.out.println("ID-1");
 		return orderDetailsService.orderDetails(orderDetailsId);
 	}

@@ -21,20 +21,22 @@ public class Order_DetailsService implements IOder_Details {
 	private RestTemplate restTemplate;
 
 	@Override
-	public Order_Details newOrderDetails(Order_Details orderDetails) {
+	public Long newOrderDetails(Order_Details orderDetails) {
 		// TODO Auto-generated method stub return
-		return oderDetailsRepositoty.save(orderDetails);
+		orderDetails = oderDetailsRepositoty.save(orderDetails);
+		 return orderDetails.getOrderDetailsId();
 	}
 
 	public ResponseTemplateValueObject orderDetails(Long orderDetailsId) {
 		// TODO Auto-generated method stub
 		System.out.println("ID-2");
 		ResponseTemplateValueObject vo = new ResponseTemplateValueObject();
-
+		
 		Order_Details orderDetails = oderDetailsRepositoty.findById(orderDetailsId)
 				.orElseThrow(IllegalArgumentException::new);
-
-		User user = restTemplate.getForObject("http://localhost:9001/user/" + orderDetails.getUserId(), User.class);
+		System.out.println(orderDetails.getUserId());
+		
+		User user = restTemplate.getForObject("http://localhost:9010/auth/userDetails/" + orderDetails.getUserId(), User.class);
 
 		Orders orders = restTemplate.getForObject("http://localhost:9003/orders/" + orderDetails.getOrderId(),
 				Orders.class);

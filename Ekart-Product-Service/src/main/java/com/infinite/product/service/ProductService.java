@@ -1,5 +1,7 @@
 package com.infinite.product.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,11 @@ public class ProductService implements IProductService {
 	public void removeProductById(Long productId) {
 		// TODO Auto-generated method stub
 		productRepository.deleteById(productId);
+	}
+
+	@Override
+	public List<Product> productList() {
+		// TODO Auto-generated method stub
+		return productRepository.findAll();
 	}
 }

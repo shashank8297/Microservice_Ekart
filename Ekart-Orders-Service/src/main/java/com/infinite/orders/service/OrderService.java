@@ -11,10 +11,12 @@ public class OrderService implements IOrderService {
 
 	@Autowired
 	OrderRepository orderRepository;
-	
-	public Orders newOrder(Orders order) {
+
+	public Long newOrder(Orders order) {
 		// TODO Auto-generated method stub
-		return orderRepository.save(order);
+		orderRepository.save(order);
+		
+		return order.getOrderId();
 	}
 
 	public Orders orderDetails(Long orderId) {
@@ -25,7 +27,7 @@ public class OrderService implements IOrderService {
 	public void removeOrder(Long orderId) {
 		// TODO Auto-generated method stub
 		orderRepository.deleteById(orderId);
-		
+
 	}
 
 }

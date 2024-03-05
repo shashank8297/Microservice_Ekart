@@ -19,8 +19,11 @@ public class OrderController {
 	OrderService orderService;
 
 	@PostMapping("/newOrder")
-	public Orders newOrder(@RequestBody Orders order) {
-		return orderService.newOrder(order);
+	public Long newOrder(@RequestBody Orders order) {
+		System.out.println(order.getOrderAmount());
+		Long orderId = orderService.newOrder(order);
+		System.out.println(orderId);
+		return orderId;
 	}
 
 	@GetMapping("/{id}")

@@ -1,13 +1,15 @@
 package com.infinite.orders_details.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Order_Details {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long orderDetailsId;
 	private Long userId;
 	private Long productId;

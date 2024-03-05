@@ -1,5 +1,7 @@
 package com.infinite.product.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +22,10 @@ public class ProductComtroller {
 	
 	@PostMapping("/addProduct")
 	public Product addNewProduct(@RequestBody Product product) {
+		System.out.println("P-1");
+		System.out.println(product.getProductPrice());
 		return productService.addProduct(product);
+		
 	}
 	
 	@GetMapping("/{id}")
@@ -37,4 +42,9 @@ public class ProductComtroller {
 		return msg;
 	}
 	
+	@GetMapping("/list")
+	public List<Product> productList(){
+		System.out.println("P-01");
+		return productService.productList();
+	}
 }

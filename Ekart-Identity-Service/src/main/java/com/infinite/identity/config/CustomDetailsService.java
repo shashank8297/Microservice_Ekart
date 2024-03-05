@@ -33,9 +33,7 @@ public class CustomDetailsService implements UserDetailsService {
 			CustomeUserDetails cud = new CustomeUserDetails(userCred);
 			System.out.println("S-01-3_1");
 			//System.out.println(cud);
-			
 			System.out.println("S-01-3_2");
-			
 			return new CustomeUserDetails(userCred);
 		}
 		else {
@@ -44,12 +42,6 @@ public class CustomDetailsService implements UserDetailsService {
 		}
 		
 		
-		
-
-		/*
-		 * return credential.map(CustomeUserDetails::new) .orElseThrow(() -> new
-		 * UsernameNotFoundException("user not found with name :" + user_name));
-		 */
 	}
 
 }
