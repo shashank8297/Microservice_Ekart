@@ -23,7 +23,7 @@ public class Order_detailsController {
 	public Long addNewOrderDetails(@RequestBody Order_Details orderDetails) {
 
 		System.out.println("ADD");
-
+		System.out.println(orderDetails.getOrderId());
 		return orderDetailsService.newOrderDetails(orderDetails);
 	}
 

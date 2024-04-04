@@ -21,7 +21,8 @@ public class OrderService implements IOrderService {
 
 	public Orders orderDetails(Long orderId) {
 		// TODO Auto-generated method stub
-		return orderRepository.findById(orderId).orElseThrow(IllegalArgumentException::new);
+		//return orderRepository.findByOrderId(orderId).orElseThrow(IllegalArgumentException::new);
+		return orderRepository.findByOrderId(orderId);
 	}
 
 	public void removeOrder(Long orderId) {

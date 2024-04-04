@@ -8,4 +8,5 @@ import com.infinite.orders.model.Orders;
 @Repository
 public interface OrderRepository extends JpaRepository<Orders, Long>{
 
+	public Orders findByOrderId(Long id);
 }

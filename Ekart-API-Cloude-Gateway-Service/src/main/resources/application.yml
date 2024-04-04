@@ -1,0 +1,89 @@
+server:
+  port: 9191
+  
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: PRODUCT-SERVICE 
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product/**
+          filters:
+          - AuthenticationFilter
+          - name: CircuitBreaker
+            args:
+              name: PRODUCT-SERVICE
+              fallback: forword:/productServiceFallBack
+              
+              
+        - id: ORDERS-SERVICE 
+          uri: lb://ORDERS-SERVICE
+          predicates:
+            - Path=/orders/**
+          filters:
+          - AuthenticationFilter
+          - name: CircuitBreaker
+            args:
+              name: ORDERS-SERVICE
+              fallback: forword:/orderServiceFallBack
+              
+        - id: USER-SERVICE 
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+          filters:
+          - AuthenticationFilter
+          - name: CircuitBreaker
+            args:
+              name: USER-SERVICE
+              fallback: forword:/userServiceFallBack  
+               
+        - id: ORDER-DETAILS-SERVICE 
+          uri: lb://ORDER-DETAILS-SERVICE
+          predicates:
+            - Path=/orderDetails/**
+          filters:
+          - AuthenticationFilter
+          - name: CircuitBreaker
+            args:
+              name:  ORDER-DETAILS-SERVICE
+              fallback: forword:/orderDetailsServiceFallBack
+        - id: Identity-Service
+          uri: lb://Identity-Service
+          predicates:
+            - Path=/**
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "http://localhost:3000/"
+#            allowedHeaders: "*"
+#            allowedMethods: "*"
+                
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+            
+            
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+        
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://10.4.33.15:8761/eureka/
+  instance:
+    hostname: 10.4.33.15
