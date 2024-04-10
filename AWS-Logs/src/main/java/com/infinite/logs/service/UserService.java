@@ -1,5 +1,7 @@
 package com.infinite.logs.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,10 @@ public class UserService {
 		// TODO Auto-generated method stub
 		userRepository.deleteById(userId);
 		return true;
+	}
+
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return userRepository.findAll();
 	}
 }
